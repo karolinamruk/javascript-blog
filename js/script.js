@@ -50,7 +50,8 @@ const titleClickHandler = function (event) {
 {
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
-    optTitleListSelector = '.titles';
+    optTitleListSelector = '.titles',
+    optArticleTagsSelector = '.post-tags .list';
 
   // eslint-disable-next-line
   function generateTitleLinks() {
@@ -98,6 +99,7 @@ const titleClickHandler = function (event) {
 
   generateTitleLinks();
 }
+
 {
   // eslint-disable-next-line
   function generateTags(){
