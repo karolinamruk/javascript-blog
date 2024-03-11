@@ -6,12 +6,12 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.tags .list';
+    optTagsListSelector = '.sidebar .list.tags';
 
   const titleClickHandler = function (event) {
     event.preventDefault();
     const clickedElement = this;
-    console.log('Link was clicked!');
+    // console.log('Link was clicked!');
 
     /* [DONE] remove class 'active' from all article links  */
 
@@ -25,7 +25,7 @@
 
     clickedElement.classList.add('active');
 
-    console.log('clicedElement:', clickedElement);
+    // console.log('clicedElement:', clickedElement);
 
     /* [DONE] remove class 'active' from all articles */
 
@@ -38,12 +38,12 @@
     /* [DONE] get 'href' attribute from the clicked link */
 
     const articleSelector = clickedElement.getAttribute('href');
-    console.log(articleSelector);
+    // console.log(articleSelector);
 
     /* [DONE] find the correct article using the selector (value of 'href' attribute) */
 
     const targetArticle = document.querySelector(articleSelector);
-    console.log(targetArticle);
+    // console.log(targetArticle);
 
     /* [DONE] add class 'active' to the correct article */
 
@@ -83,7 +83,7 @@
 
       /* insert link into titleList */
       html = html + linkHTML;
-      console.log(html);
+      // console.log(html);
     }
     titleList.innerHTML = html;
 
@@ -97,8 +97,8 @@
   generateTitleLinks();
 
   function generateTags() {
-    /* [NEW] create a new variable allTags with an empty array */
-    let allTags = [];
+    /* [NEW] create a new variable allTags with an empty object */
+    let allTags = {};
     /* [DONE] find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -112,11 +112,11 @@
 
       /* [DONE] get tags from data-tags attribute */
       const articleTags = article.getAttribute('data-tags');
-      console.log(articleTags);
+      // console.log(articleTags);
 
       /* [DONE] split tags into array */
       const articleTagsArray = articleTags.split(' ');
-      console.log(articleTagsArray);
+      // console.log(articleTagsArray);
 
       /* [DONE] START LOOP: for each tag */
       for (let tag of articleTagsArray) {
@@ -125,13 +125,16 @@
 
         /* [DONE]  add generated code to html variable */
         html = html + tagHtml;
-        console.log(html);
+
         /* [NEW] check if this link is NOT already in allTags */
-        if (allTags.indexOf(linkHTML) == -1) {
-          /* [NEW] add generated code to allTags array */
-          allTags.push(linkHTML);
+        if (!allTags[tag]) {
+          /* [NEW] add tag to allTags object */
+          allTags[tag] = 1;
+        } else {
+          allTags[tag]++;
         }
 
+        // console.log(linkHTML);
         /* [DONE] END LOOP: for each tag */
       }
       /* [DONE] insert HTML of all the links into the tags wrapper */
@@ -141,8 +144,19 @@
     /* [NEW] find list of tags in right column */
     const tagList = document.querySelector(optTagsListSelector);
 
-    /* [NEW] add html from allTags to tagList */
-    tagList.innerHTML = allTags.join(' ');
+    /* [NEW] create variable for all links HTML code */
+    let allTagsHTML = '';
+
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for (let tag in allTags) {
+      /* [NEW] generate code of a link and add it to allTagsHTML */
+      allTagsHTML +=
+        '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';
+    }
+    /* [NEW] END LOOP: for each tag in allTags: */
+
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
   }
 
   generateTags();
@@ -211,7 +225,7 @@
       const authorWrapper = article.querySelector(optArticleAuthorSelector);
 
       // /* [DONE] make html variable with empty string */
-      // let html = '';
+      let html = '';
 
       /* [DONE] get author from post-author attribute */
       const articleAuthor = article.getAttribute('data-author');
@@ -222,7 +236,7 @@
 
       /* [DONE] add generated code to html variable */
       html = html + authorHtml;
-      console.log(html);
+      // console.log(html);
 
       /* [DONE] insert HTML of the link into the author wrapper */
       authorWrapper.innerHTML = html;
