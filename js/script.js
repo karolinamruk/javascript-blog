@@ -1,3 +1,4 @@
+/* eslint-disable no-inner-declarations */
 {
   ('use strict');
 
@@ -224,9 +225,6 @@
       /* [DONE] find author wrapper */
       const authorWrapper = article.querySelector(optArticleAuthorSelector);
 
-      // /* [DONE] make html variable with empty string */
-      let html = '';
-
       /* [DONE] get author from post-author attribute */
       const articleAuthor = article.getAttribute('data-author');
 
@@ -234,12 +232,8 @@
       const authorHtml =
         '<a href="#' + articleAuthor + '">' + articleAuthor + '</a>';
 
-      /* [DONE] add generated code to html variable */
-      html = html + authorHtml;
-      // console.log(html);
-
       /* [DONE] insert HTML of the link into the author wrapper */
-      authorWrapper.innerHTML = html;
+      authorWrapper.innerHTML = authorHtml;
 
       // [DONE] END LOOP: for each article
     }
