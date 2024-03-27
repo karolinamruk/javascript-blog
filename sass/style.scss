@@ -126,6 +126,42 @@ body {
   }
 }
 
+/* Tags */
+
 .list.list-horizontal li {
   margin-right: 5px;
+}
+
+.list.tags li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.tag-size-1 {
+  font-size: 16px;
+  color: blueviolet;
+  text-decoration: none;
+}
+.tag-size-2 {
+  font-size: 20px;
+  color: lightgreen;
+  text-decoration: none;
+}
+
+.tag-size-3 {
+  font-size: 22px;
+  color: lightcoral;
+  text-decoration: none;
+}
+
+.tag-size-4 {
+  font-size: 24px;
+  color: lightpink;
+  text-decoration: none;
+}
+
+.tag-size-5 {
+  font-size: 26px;
+  color: lightseagreen;
+  text-decoration: none;
 }
