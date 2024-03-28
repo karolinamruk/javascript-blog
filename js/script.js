@@ -298,7 +298,14 @@
     for (let author in allAuthors) {
       /* [NEW] generate code of a link and add it to allAuthorsHTML */
       const authorLinkHTML =
-        '<li><a href="#author-' + author + '">' + author + '</a></li>';
+        '<li><a href="#author-' +
+        author +
+        '">' +
+        author +
+        ' (' +
+        allAuthors[author] +
+        ')' +
+        '</a></li>';
 
       allAuthorsHTML += authorLinkHTML;
 
